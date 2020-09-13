@@ -1,0 +1,18 @@
+.fade-down-leave-active {
+    animation: fade-down .2s reverse;    
+}
+.fade-down-enter-active {
+    animation: fade-down .2s ease-in-out;
+}
+
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        margin-top: 10px;
+        
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}

@@ -1,12 +1,22 @@
 <template>
     <div class="posts-page">
-        <PostList />
+        <PostList :posts='blogPosts' />
     </div>
 </template>
 
 <script>
 export default {
-
+    transition: 'fade-down',
+    head() {
+        return {
+            title: 'Gabriel Verde | Blog'
+        }
+    },
+    computed: {
+        blogPosts() {
+            return this.$store.getters.loadedPosts;
+        }
+    }
 }
 </script>
 

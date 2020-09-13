@@ -8,6 +8,17 @@
   </div>
 </template>
 
+<script>
+export default {
+  transition: 'fade-down',
+  head() {
+    return {
+      title: 'Gabriel Verde | Sobre'
+    }
+  },
+}
+</script>
+
 <style scoped>
 .about-page {
   text-align: center;

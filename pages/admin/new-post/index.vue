@@ -1,14 +1,30 @@
 <template>
     <div class="admin-new-post-page">
         <section class="new-post-form">
-            <AdminPostForm/>
+            <AdminPostForm @submit="onSubmitted" />
         </section>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+    transition: 'fade-down',
     layout: 'admin',
+    head() {
+        return {
+            title: 'Gabriel Verde | Novo Post'
+        }
+  },
+    methods: {
+        onSubmitted(postData) {
+            this.$store.dispatch('addPost', postData)
+            .then(() => { this.$router.push('/admin'); })
+
+            
+        }
+    }
 }
 </script>
 

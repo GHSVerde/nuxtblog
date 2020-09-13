@@ -5,14 +5,25 @@
     </section>
     <section class="existing-posts">
         <h1>Existing Posts</h1>
-        <PostList isAdmin />
+        <PostList isAdmin :posts='blogPosts' />
     </section>
 </div>
 </template>
 
 <script>
 export default {
+  transition: 'fade-down',
   layout: 'admin',
+  head() {
+    return {
+      title: 'Gabriel Verde | Admin'
+    }
+  },
+  computed: {
+    blogPosts() {
+      return this.$store.getters.loadedPosts;
+    }
+  }
 }
 </script>
 

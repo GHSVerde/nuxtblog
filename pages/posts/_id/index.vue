@@ -1,21 +1,37 @@
 <template>
   <div class="single-post-page">
       <section class="post">
-          <h1 class="title">Title of the Post</h1>
+          <h1 class="title">{{ loadedPost.title}}</h1>
           <div class="post-details">
-              <div class="post-detail">Last Updated On: Date</div>
-              <div class="post-detail">Written by: NAME</div>
+              <div class="post-detail">Last Updated On: {{ loadedPost.updatedDate }}</div>
+              <div class="post-detail">Written by: {{ loadedPost.author }}</div>
           </div>
       </section>
       <section class="post-feedback">
-          <p class="post-content">Let me know what you think about the post, send mail to: <a href="mailto:feedback@gabrielverde.com">feedback@gabrielverde.com</a></p>
+          <p class="post-content">{{ loadedPost.content }}</p>
       </section>
   </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios';
 
+export default {
+  transition: 'fade-down',
+  asyncData(context) {
+    return axios.get('https://nuxt-blog-c2f6c.firebaseio.com/posts/' + context.params.id + '.json')
+    .then(res => { return { loadedPost: res.data } })
+    .catch(e => context.error(e));
+  },
+  head() {
+    return { 
+      title: 'Gabriel Verde | ' + this.loadedPost.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.loadedPost.previewText }
+      ]
+    }
+    
+  },
 }
 </script>
 

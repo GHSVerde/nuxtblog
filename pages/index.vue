@@ -3,7 +3,7 @@
     <section class="intro">
       <h1>Get the latest tech news</h1>
     </section>
-    <PostList />
+    <PostList  :posts='loadedPosts'/>
   </div>
 </template>
 
@@ -11,7 +11,17 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  
+  transition: 'fade-down',
+  head() {
+    return {
+      title: 'Gabriel Verde'
+    }
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    }
+  }
 })
 </script>
 

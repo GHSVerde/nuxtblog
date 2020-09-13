@@ -1,23 +1,14 @@
 <template>
     <section class="post-list">
+     
      <PostPreview
-     id='1'
+     v-for='post in posts'
+     :key='post.id'
+     :id='post.id'
      :is-admin='isAdmin'
-     thumbnail='https://static.techspot.com/images2/news/bigimage/2018/07/2018-07-10-image-35.jpg'
-     title='Hello There!'
-     previewText='First Post!'/>
-     <PostPreview
-     id='1'
-     :is-admin='isAdmin'
-     thumbnail="https://static.techspot.com/images2/news/bigimage/2018/07/2018-07-10-image-35.jpg"
-     title='Hello There - Second Time'
-     previewText='Second Post!'/>
-     <PostPreview
-     id='1'
-     :is-admin='isAdmin'
-     thumbnail='https://static.techspot.com/images2/news/bigimage/2018/07/2018-07-10-image-35.jpg'
-     title='Hello There - Third Time'
-     previewText='Third Post!'/>
+     :thumbnail='post.thumbnail'
+     :title='post.title'
+     :previewText='post.previewText'/>
      
     </section>
 </template>
@@ -26,7 +17,8 @@
 export default {
     name: 'PostList',
     props: {
-      isAdmin: { type: Boolean, default: false }
+      isAdmin: { type: Boolean, default: false },
+      posts: { Type: Array, required: true }
     }
 }
 </script>
