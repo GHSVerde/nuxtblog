@@ -12,7 +12,6 @@
 
 <script>
 export default {
-  transition: 'fade-down',
   layout: 'admin',
   head() {
     return {

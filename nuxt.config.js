@@ -30,22 +30,28 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/main.css'
+    '~assets/main.css'
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
+ // Códigos JS globais para serem usados na aplicação
   plugins: [
+    '~plugins/date-filter.js'
   ],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
   */
   components: true,
+  /*
+  * Config loading bar
+  */
   loading: {
     color: '#BF1313',
-    height: '3px'
+    height: '3px',
+    duration: 5000
   },
   /*
   ** Nuxt.js dev-modules
@@ -57,11 +63,17 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
+  axios: {
+    baseURL: 'https://nuxt-blog-c2f6c.firebaseio.com'
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-  }
+  },
+  dev: true,
+  transition: 'fade-down',
 }

@@ -11,7 +11,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  transition: 'fade-down',
+  
   head() {
     return {
       title: 'Gabriel Verde'

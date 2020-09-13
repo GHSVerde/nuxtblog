@@ -19,7 +19,6 @@
 
 export default {
   name: 'AdminAuthPage',
-  transition: 'fade-down',
   layout: 'admin',
   data() {
     return {

@@ -10,7 +10,6 @@
 
 <script>
 export default {
-  transition: 'fade-down',
   head() {
     return {
       title: 'Gabriel Verde | Sobre'

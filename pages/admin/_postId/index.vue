@@ -7,24 +7,21 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-    transition: 'fade-down',
     layout: 'admin',
     head() {
     return {
       title: 'Gabriel Verde | Editar | ' + this.loadedPost.title
     }
   },
-    asyncData(context) {
-        return axios.get('https://nuxt-blog-c2f6c.firebaseio.com/posts/' + context.params.postId + '.json')
+    asyncData({params, error, $axios}) {
+        return $axios.get('/posts/' + params.postId + '.json')
         .then(res => { 
             return {
-                loadedPost: {...res.data, id: context.params.postId }
+                loadedPost: {...res.data, id: params.postId }
             }
         })
-        .catch(e => context.error(e))
+        .catch(e => error(e))
     },
     methods: {
         onSubmitted(editedPost) {

@@ -1,5 +1,4 @@
 import Vuex from 'vuex';
-import axios from 'axios';
 
 const createStore = () => {
     return new Vuex.Store({
@@ -21,7 +20,7 @@ const createStore = () => {
         actions: {
             // Get blog posts on init
             nuxtServerInit(vuexContext, context) {
-                return axios.get('https://nuxt-blog-c2f6c.firebaseio.com/posts.json')
+                return context.$axios.get('posts.json')
                 .then(res => {
                     const postsArray = [];
 
@@ -37,7 +36,7 @@ const createStore = () => {
             addPost(vuexContext, post) {
                 const createdPost = {...post, updatedDate: new Date() };
 
-                return axios.post('https://nuxt-blog-c2f6c.firebaseio.com/posts.json', createdPost)
+                return this.$axios.post('/posts.json', createdPost)
             .then(result => {
                 vuexContext.commit('addPost', { ...createdPost, id: result.data.name });
             })
@@ -45,7 +44,7 @@ const createStore = () => {
             },
             editPost(vuexContext, editedPost) {
 
-                return axios.put('https://nuxt-blog-c2f6c.firebaseio.com/posts/' + editedPost.id + '.json', {...editedPost, updatedDate: new Date() })
+                return this.$axios.put('/posts/' + editedPost.id + '.json', {...editedPost, updatedDate: new Date() })
                 .then(res => {
                     vuexContext.commit('editPost', editedPost)
                 })

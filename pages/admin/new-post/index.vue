@@ -10,7 +10,6 @@
 import axios from 'axios';
 
 export default {
-    transition: 'fade-down',
     layout: 'admin',
     head() {
         return {
